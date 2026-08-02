@@ -1,17 +1,23 @@
-/* inter font */
+/* Fuente */
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
 /* font-family: "Outfit", sans-serif; */
 *{
     margin: 0;
     padding: 0;
 }
+
 :root{
-    --color-fondo: #a0c8eb;
-    --color-fondo2: #5A7ACD;
-    --color-texto: #0F2242;
-    --color-principal: #2C5EAD;   
-    --color-tarjetas: #1591DC;      
+    --color-fondo: #9bd3fc;
+    --color-fondo2: #7ca7cf;;
+    --color-texto: #112635;
+    --color-principal: #25638d;   
+    --color-tarjetas: #2A8DBE;      
 }
+/* color-fondo es para el fondo de la página */
+/* color-fondo2 es para el background-color del header y footer */
+/* color-texto es para el color del texto */
+/* color-principal es para el background-color de los titulos */
+/* color-tarjetas es para el background-color de las secciones */
 
 /* --------------GENERALES---------- */
 body{
@@ -33,6 +39,9 @@ a{
 
 h2{
     font-size: 30px;
+    background-color:var(--color-principal);
+    padding:5px;
+    text-align: center;
 }
 
 /* --------------HEADER------------- */
@@ -42,6 +51,7 @@ header{
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
 }
 h1{
     background-color: var(--color-principal);
@@ -50,6 +60,7 @@ h1{
 header nav ul{
     display:flex;
     flex-direction: row;
+    flex-wrap: wrap;
     gap: 3rem;
     list-style: none;
     padding: 1rem;
@@ -63,8 +74,61 @@ header nav ul{
 main{
     display: flex;
     flex-direction: column;
+    gap: 2rem;
+}
+/* El main del inicio con el uso del GRID */
+.caja{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-areas:
+    "contenedor contenedor side-bar"
+    "contenedor2 contenedor2 side-bar"
+    "contenedor3 contenedor3 contenedor3"
+    ;
     gap: 20px;
 }
+
+.contenedor{
+    grid-area: contenedor;
+}
+.contenedor2{
+    grid-area: contenedor2;
+}
+.contenedor3{
+    grid-area: contenedor3;
+}
+.side-bar{
+    grid-area: side-bar;
+}
+
+/* El main de los temas con el uso del GRID */
+.caja2{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-areas:
+    "side-bar side-bar contenedor"
+    "contenedor2 contenedor2 contenedor2"
+    "contenedor3 contenedor3 contenedor3"
+    ;
+    gap: 20px;
+}
+
+.contenedor{
+    grid-area: contenedor;
+}
+.contenedor2{
+    grid-area: contenedor2;
+}
+.contenedor3{
+    grid-area: contenedor3;
+}
+.side-bar{
+    grid-area: side-bar;
+}
+
+/* ------------------------- */
 section{
     margin: 1rem;
     border: 3px solid #000000;
@@ -72,26 +136,23 @@ section{
     border-radius: 10px;
 
 }
-main section div.contenedor p{
+main section div p{
     font-size: 25px;
     padding:20px;
 }
-section div.contenedor article ul.lista{
+section div article ul.lista{
     padding:15px;
     justify-content: center;
 }
 .lista{
-    font-size: 32px;
+    font-size: 30px;
     list-style: none;
     display:flex;
     flex-direction: row;
+    justify-content: center;
     gap: 4rem;
 }
-.colorFondo{
-    background-color:var(--color-principal);
-    padding:5px;
-    text-align: center;
-}
+/* Visual de las imagenes */
 figure{
     text-align: center;
 }
@@ -101,6 +162,7 @@ figcaption{
 img{
     border-radius: 20px;
 }
+/* ----------------*/
 .preguntas{
     display: flex;
     flex-direction: column;
@@ -113,9 +175,75 @@ footer{
 footer h2{
     background-color: var(--color-principal);
     font-size: 35px;
+    padding: 2px;
 }
-footer ul{
-    list-style: none;
-    font-size: 36px;
+/* Los enlaces de Redes Sociales en logotipos */
+footer div{
+    display: flex;
+    flex-direction: row;
+    gap: 3rem;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+footer div a img{
+    width: 60px;
+    height: 60px;
+}
+/* ------------------------- */
+
+/* TRANSFORMACION DE PANTALLAS */
+
+/* Tablets */
+@media (max-width: 1250px) {
+    .caja{
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        grid-template-areas:
+        "contenedor side-bar"
+        "contenedor2 contenedor2"
+        "contenedor3 contenedor3 "
+        ;
+    }
+    .caja2{
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        grid-template-areas:
+        "side-bar contenedor"
+        "contenedor2 contenedor2"
+        "contenedor3 contenedor3 "
+        ;
+    }
+    .lista{
+        flex-direction: column;
+        gap: 1rem;
+    }
+
 }
 
+/* Mobiles */
+@media (max-width: 750px) {
+    .caja{
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-areas:
+        "contenedor"
+        "contenedor2"
+        "contenedor3"
+        "side-bar"
+        ;
+    }
+    .caja2{
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-areas:
+        "side-bar"
+        "contenedor"
+        "contenedor2"
+        "contenedor3"
+        ;
+    }
+    .lista{
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+}
